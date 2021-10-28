@@ -219,167 +219,214 @@ public static void unfold(ListNode head){
         if(lists.length==0){
             return null;
         }
-        
+
         mergeKLists(lists,0,lists.length-1);
     }
 
+    public static ListNode mergeSort(ListNode head){
+        if(head==null || head.next==null){
+            return head;
+        }
 
-//     public static ListNode mergeSort(ListNode head) {
-//         if (head == null || head.next == null)
-//             return head;
+        ListNode mid=midNode(head);
+        ListNode nhead=mid.next;
+        mid.next=null;
 
-//         ListNode mid = midNode(head);
-//         ListNode nHead = mid.next;
-//         mid.next = null;
+        ListNode list1=mergeSort(head);
+        ListNode list2=mergeSort(nhead);
 
-//         return mergeTwoLists(mergeSort(head), mergeSort(nHead));
-//     }
+        return mergeTwoSortedLists(list1,list2);
+    }
 
-//     public static ListNode removeNthFromEnd(ListNode head, int n) {
-//         if (head == null || n <= 0)
-//             return head;
+    public ListNode removeNthFromEnd(ListNode head, int n) {
 
-//         ListNode slow = head, fast = head;
-//         while (n-- > 0) {
-//             fast = fast.next;
-//             if (fast == null && n > 0)
-//                 return head;
-//         }
+        if(head==null || n<=0)
+        {
+            return head;
+        }
+        ListNode fast=head;
+        ListNode slow=head;
 
-//         if (fast == null) {
-//             ListNode rnode = slow;
-//             head = rnode.next;
-//             rnode.next = null;
-//             return head;
-//         }
+        while(n-->0){
+            fast=fast.next;
+            if(fast==null && n>0)
+            {
+                return head;
+            }
+        }
 
-//         while (fast.next != null) {
-//             slow = slow.next;
-//             fast = fast.next;
-//         }
+        if(fast==null)
+        {
+            ListNode rNode=head;
+            head=rNode.next;
+            rNode.next=null;
+            return head;
+        }
 
-//         ListNode rnode = slow.next;
-//         slow.next = rnode.next;
-//         rnode.next = null;
+        while(fast.next!=null)
+        {
+            slow=slow.next;
+            fast=fast.next;
+        }
 
-//         return head;
-//     }
+        ListNode rNode=slow.next;
+        slow.next=rNode.next;
+        rNode.next=null;
 
-//     public static ListNode segregateEvenOdd(ListNode head) {
-//         if (head == null || head.next == null)
-//             return head;
+        return head;
+    }
 
-//         ListNode even = new ListNode(-1);
-//         ListNode odd = new ListNode(-1);
-//         ListNode ep = even, op = odd, curr = head;
+    public static ListNode segregateEvenOdd(ListNode head){
 
-//         while (curr != null) {
-//             if (curr.val % 2 != 0) {
-//                 op.next = curr;
-//                 op = op.next;
-//             } else {
-//                 ep.next = curr;
-//                 ep = ep.next;
-//             }
-//             curr = curr.next;
-//         }
+        if(head==null || head.next==null)
+        {
+            return head;
+        }
+        ListNode even=new ListNode(-1);
+        ListNode odd=new ListNode(-1);
 
-//         ep.next = odd.next;
-//         op.next = null;
-//         head = even.next;
+        ListNode ep=even;
+        ListNode op=odd;
 
-//         // even.next = odd.next = null;
-//         return head;
-//     }
+        ListNode curr=head;
 
-//     public static ListNode segregate01(ListNode head) {
-//         if (head == null || head.next == null)
-//             return head;
+        while(curr!=null)
+        {
+            if(curr%2==0){
+                ep.next=curr;
+                ep=curr;
+                curr=curr.next;
+            }
+            
+            else{
+                op.next=curr;
+                op=curr;
+                curr=curr.next;
+            }
+        }
+        op.next=null;
+        ep.next=odd.next;
 
-//         ListNode one = new ListNode(-1);
-//         ListNode zero = new ListNode(-1);
-//         ListNode op = one, zp = zero, curr = head;
+        return even.next;
 
-//         while (curr != null) {
-//             if (curr.val != 0) {
-//                 op.next = curr;
-//                 op = op.next;
-//             } else {
-//                 zp.next = curr;
-//                 zp = zp.next;
-//             }
-//             curr = curr.next;
-//         }
+    }
 
-//         zp.next = one.next;
-//         op.next = null;
+    public static ListNode segregate01(ListNode head){
 
-//         head = zero.next;
+        if(head==null || head.next==null)
+        {
+            return head;
+        }
+        ListNode curr=head;
+        ListNode one=new ListNode(-1);
+        ListNode zero=new ListNode(-1);
 
-//         zero.next = one.next = null;
-//         return head;
-//     }
+        ListNode op=one;
+        ListNode zp=zero;
 
-//     public static ListNode segregate012(ListNode head) {
-//         if (head == null || head.next == null)
-//             return head;
+        while(curr!=null)
+        {
+            if(curr==0)
+            {
+                zp.next=curr;
+                zp=curr;
+                curr=curr.next;
+            }
 
-//         ListNode one = new ListNode(-1);
-//         ListNode zero = new ListNode(-1);
-//         ListNode two = new ListNode(-1);
-//         ListNode op = one, zp = zero, tp = two, curr = head;
+            else{
+                op.next=curr;
+                op=curr;
+                curr=curr.next;
+            }
+        }
 
-//         while (curr != null) {
-//             if (curr.val == 1) {
-//                 op.next = curr;
-//                 op = op.next;
-//             } else if (curr.val == 0) {
-//                 zp.next = curr;
-//                 zp = zp.next;
-//             } else {
-//                 tp.next = curr;
-//                 tp = tp.next;
-//             }
-//             curr = curr.next;
-//         }
+        op.next=null;
+        zp.next=one.next;
+        head=zero.next;
 
-//         op.next = two.next;
-//         zp.next = one.next;
-//         tp.next = null;
+        return head;
+    }
 
-//         head = zero.next;
-//         zero.next = one.next = two.next = null;
-//         return head;
-//     }
+    public static ListNode segregate012(Node head)
+    {
+        if(head==null || head.next==null){
+            return head;
+        }
+        ListNode zero =new Node(-1);
+        ListNode one=new Node(-1);
+        ListNode two=new Node(-1);
+        
+        ListNode zp=zero;
+        ListNode op=one;
+        ListNode tp=two;
+        
+        ListNode curr=head;
+        
+        while(curr!=null)
+        {
+            if(curr.val==0)
+            {
+                zp.next=curr;
+                zp=curr;
+            }
+            
+            else if(curr.val==1)
+            {
+                op.next=curr;
+                op=curr;
+               
+            }
+            
+            else{
+                tp.next=curr;
+                tp=curr;
+            }
+            
+             curr=curr.next;
+        }
+        
+        tp.next=null;
+         op.next=two.next;
+        zp.next=one.next;
+     
+        return zero.next;
+}
 
-//     public static ListNode segregateOnLastIndex(ListNode head) {
-//         if (head == null || head.next == null)
-//             return head;
+public static ListNode segregateOnLastIndex(ListNode head) {
+    ListNode curr=head;
+    ListNode small=new ListNode(-1);
+    ListNode large=new ListNode(-1);
 
-//         ListNode small = new ListNode(-1);
-//         ListNode large = new ListNode(-1);
-//         ListNode sp = small, lp = large, curr = head;
+    ListNode lp=large;
+    ListNode sp=small;
 
-//         ListNode pivotNode = head;
-//         while (pivotNode.next != null)
-//             pivotNode = pivotNode.next;
+    ListNode pivotNode=head;
+    while(pivotNode.next!=null)
+    {
+        pivotNode=pivotNode.next;
+    }
 
-//         while (curr != null) {
-//             if (curr.val <= pivotNode.val) {
-//                 sp.next = curr;
-//                 sp = sp.next;
-//             } else {
-//                 lp.next = curr;
-//                 lp = lp.next;
-//             }
-//             curr = curr.next;
-//         }
+    while(curr!=null){
+        if(curr.val<=pivotNode.val){
+            sp.next=curr;
+            sp=curr;
+            curr=curr.next;
+        }
 
-//         sp.next = large.next;
-//         lp.next = null;
+        else {
+            lp.next=curr;
+            lp=curr;
+            curr=curr.next;
+        }
+    }
 
-//         return sp;
-//     }
+    lp.next=null;
+    sp.next=large.next;
+
+    return sp;
+}
+
+
 
 //     public static ListNode segregate(ListNode head, int pivotIdx) {
 //         if (head == null || head.next == null)

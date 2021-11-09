@@ -1,7 +1,7 @@
 import java.util.Random;
 public class quickSortArray{
 
-public static Random rand=new Random();
+Random rand=new Random();
   
     public static void swap(int[] arr,int a,int b)
     {

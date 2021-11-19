@@ -105,6 +105,34 @@ public static String compress2(String str)
     return sb.toString();
 }
 
+
+public static String compres3(String str)
+{
+    StringBuilder sb=new StringBuilder();
+    char prevChar=str.charAt(0);
+    int idx=1;
+    while(idx<=str.length())
+    {
+        int count=0;
+
+        while(idx<str.length && prevChar==str.charAt(idx))
+        {
+            count++;
+            idx++;
+        }
+
+        sb.append(prevChar);
+
+        if(idx==str.length())
+        {
+            break;
+        }
+        prevChar=str.charAt(idx);
+        idx++;
+    }
+
+    return sb.toString();
+}
     
     public static void main(String[] args)
     {

@@ -105,7 +105,6 @@ public static String compress2(String str)
     return sb.toString();
 }
 
-
 public static String compres3(String str)
 {
     StringBuilder sb=new StringBuilder();
@@ -133,6 +132,81 @@ public static String compres3(String str)
 
     return sb.toString();
 }
+
+public static String toggleCase(String str){	
+		StringBuilder  sb=new StringBuilder();
+		for(char c=0;c<str.length();c++)
+		{
+		    char ch=str.charAt(c);
+		    if(ch>='a' && ch<='z')
+		    {
+		        int code=ch-'a';
+		        ch=(char)(code+'A');
+		        sb.append(ch);
+		    }
+		    
+		    else{
+		        int code=ch-'A';
+		        ch=(char)(code+'a');
+		        sb.append(ch);
+		    }
+		}
+
+		return sb.toString();
+	}
+
+public static boolean isPalindrome(String str)
+{
+    int i=0;
+    int j=str.length()-1;
+
+    while(i<j)
+    {
+        if(str.charAt(i)!=str.charAt(j))
+        {
+            return false;
+        }
+        i++;
+        j--;
+    }
+}
+public static void PalindromicSubString(String str)
+{
+    for(int i=0;i<str.length();i++)
+    {
+        for(int j=i;j<str.length();j++)
+        {
+            String s=str.substring(i,j+1);
+            if(isPalindrome(s))
+            {
+                System.out.println(s);
+            }
+        }
+    }
+}
+
+public static String consecutiveCharacter(String str){
+   	if(str.length()<=1)
+    {
+        return str;
+    }
+
+    StringBuilder sb=new StringBuilder();
+    
+    for(int i=0;i<=str.length()-2;i++)
+    {
+         char c1=str.charAt(i);
+         char c2=str.charAt(i+1);
+         int diff=c2-c1;
+
+         sb.append(c1);
+         sb.append(diff);
+    }
+     
+    sb.append(str.charAt(str.length()-1));
+
+    return sb.toString();
+} 
     
     public static void main(String[] args)
     {

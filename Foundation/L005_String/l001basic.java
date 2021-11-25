@@ -207,7 +207,135 @@ public static String consecutiveCharacter(String str){
 
     return sb.toString();
 } 
+
+public static ArrayList<String> permutation(String str)
+{
+    ArrayList<String> ans=new ArrayList<>();
+    ans.add(str.charAt(0));
+
+    for(int i=1;i<str.length();i++)//to iterate over the string
+    {
+        char ch=str.charAt(i);
+        for(String s:ans)
+        {
+            ArrayList<String> smallAns=new ArrayList<>();
+            for(int j=0;j<=s.length();j++)
+            {
+                String newString=s.substring(0,i)+ch+s.substring(i);
+                smallAns.add(newString);
+            }
+        }
+
+        ans=smallAns;
+    }
+
+    return ans;
+}
+
+public static ArrayList<String> subsequ(String str){
+    ArrayList<String> ans=new ArrayList<>();
+    ans.add(" ");
+
+    for(int i=0;i<str.length();i++)
+    {
+        char ch=str.charAt(i);
+        int size=ans.size();
+        for(int j=0;j<size;j++)
+        {
+            ans.add(ans.get(j)+ch);
+        }
+    }
+
+    return ans;
+}
     
+public static boolean isPrime(int n)
+    {
+        for(int i=2;i*i<=n;i++)
+        {
+            if(n % i==0)
+            {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+
+public static void solution(ArrayList<Integer> al){
+	
+	ArrayList<Integer> ans = new ArrayList<>();
+        for(int ele : al){
+            if(!isPrime(ele)) ans.add(ele);
+        }
+        
+        al.clear();
+        for(int ele : ans) al.add(ele);
+	}
+    
+//Leetcode 387
+public int unique(String str)
+    {
+        if(str.length()==1)
+        {
+            return 0;
+        }
+        int[] freqArray=new int[26];
+        for(int i=0;i<str.length();i++)
+        {
+            char ch=str.charAt(i);
+            int code=ch-'a';
+            
+            freqArray[code]++;
+        }
+        
+        for(int i=0;i<str.length();i++)
+        {
+            int checkCode=str.charAt(i)-'a';
+            
+            if(freqArray[checkCode]==1)
+            {
+                return i;
+            }
+        }    
+        return -1;
+    }
+
+    public int firstUniqChar(String s) {
+        return unique(s);    
+    }
+
+//PrimeFactor Query Problem
+public static boolean isPrime(int n)
+{
+    for(int i=2;i*i<=n ;i++)
+    {
+        if(n%i==0)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+public static ArrayList<Integer> primeFactor(int n)
+{
+    ArrayList<Integer> ans=new ArrayList<>();
+
+    for(int i=2;i*i<=n;i++)
+    {
+        if(isPrime(i))
+        {
+            ans.add(i);
+        }
+    }
+    return ans;
+}
+
+public static void primeFactorsforQuery(ArrayList<Integer> query)
+{
+
+}
     public static void main(String[] args)
     {
         System.out.println(compress2("abxxxxaaaab"));

@@ -179,7 +179,6 @@ public static int sumOfDigits(String str,int idx)
 
 public static long StringToNumber(String str,int idx,long pow)
 {
-
     if(idx==-1)
     {
         return 0;

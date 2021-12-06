@@ -426,38 +426,50 @@ public static ListNode segregateOnLastIndex(ListNode head) {
     return sp;
 }
 
+ public static ListNode segregate(ListNode head, int pivotIdx) {
 
+     if(head==null || head.next==null){
+         return head;
+     }
 
-//     public static ListNode segregate(ListNode head, int pivotIdx) {
-//         if (head == null || head.next == null)
-//             return head;
+    ListNode small=new ListNode(-1);
+    ListNode large=new ListNode(-1);
 
-//         ListNode small = new ListNode(-1);
-//         ListNode large = new ListNode(-1);
-//         ListNode sp = small, lp = large, curr = head;
+     ListNode sp=small;
+     ListNode lp=large;
+     ListNode curr=head;
+     ListNode pivotNode=head;
+     while(pivotIdx-->0)
+     {
+         pivotNode=pivotNode.next;
+     }
 
-//         ListNode pivotNode = head;
-//         while (pivotIdx-- > 0)
-//             pivotNode = pivotNode.next;
+     while(curr!=null){
+         if(curr!=pivotNode && pivotNode.val>curr.val)
+         {
+             sp.next=curr;
+             sp=curr;
+             curr=curr.next;
+         }
 
-//         while (curr != null) {
-//             if (curr != pivotNode && curr.val <= pivotNode.val) {
-//                 sp.next = curr;
-//                 sp = sp.next;
-//             } else if (curr != pivotNode) {
-//                 lp.next = curr;
-//                 lp = lp.next;
-//             }
-//             curr = curr.next;
-//         }
+         else if(curr!=pivotNode  && pivotNode.val<curr.val){
+             lp.next=curr;
+             lp=curr;
+             curr=curr.next;
+         }
 
-//         sp.next = pivotNode;
-//         pivotNode.next = large.next;
-//         lp.next = null;
+         else{
+             curr=curr.next;
+         }
+     }
 
-//         head = small.next;
-//         return head;
-//     }
+    sp.next=pivotNode;
+    pivotNode.next=large.next;
+    lp.next=null;
+
+    return small.next;
+  }
+
 
 //     public static ListNode reverse(ListNode head){
 

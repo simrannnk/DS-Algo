@@ -107,16 +107,21 @@ public static void mergeElements(ListNode[] left,ListNode[] right,Listnode pivot
     return new ListNode[]{head,tail};
 }
 
-public ListNode[] quickSort(ListNode head)//returns an array of head and tail
+public ListNode[] quickSort(ListNode head)//returns an array of head and tail //T(N)=2N+2T(N/2)
 {
-    int len=length(head);
-    int pivotIdx=rand.nextInt(len);
+    if(head==null || head.next==null)//O(1)
+    {
+        return new ListNode[]{head,head};
+    }
+
+    int len=length(head);//O(N)
+    int pivotIdx=rand.nextInt(len);//O(1)
     
-    ListNode[] segregatedElements=segregate(head,pivotIdx);//segreagatedElements is an array of head1, pivotNode and head2
+    ListNode[] segregatedElements=segregate(head,pivotIdx);//segreagatedElements is an array of head1, pivotNode and head2 //O(N)
 
      ListNode pivotNode=segregatedElements[1];
-     ListNode[] left=quickSort(segregatedElements[0]);
-     ListNode[] right=quickSort(segregatedElements[2]);
+     ListNode[] left=quickSort(segregatedElements[0]);//O(N/2)
+     ListNode[] right=quickSort(segregatedElements[2]);//O(N/2)
 
     return mergeElements(left,right,pivotNode);
      

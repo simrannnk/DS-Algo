@@ -318,24 +318,34 @@ public static boolean isPrime(int n)
     return true;
 }
 
-public static ArrayList<Integer> primeFactor(int n)
-{
-    ArrayList<Integer> ans=new ArrayList<>();
+    public static void primeFactors(int num,ArrayList<Integer> list){
 
-    for(int i=2;i*i<=n;i++)
-    {
-        if(isPrime(i))
-        {
-            ans.add(i);
+        int idx = 0;
+        while(num != 1 && idx < list.size()){
+            int count = 0;
+            while(num % list.get(idx) == 0){
+                num /= list.get(idx);
+                count++;
+            }
+            if(count > 0)
+               System.out.print(list.get(idx) + "^" + count + " ");
+            idx++;
+        }
+        
+        if(num > 1)
+            System.out.print(num + "^" + 1);
+        
+        System.out.println();
+    }
+
+    public static void primeFactorsForQuery(int[] query){
+        ArrayList<Integer> list = new ArrayList<>();
+        primeNumbers(10000,list);
+
+        for(int ele : query){
+            primeFactors(ele,list);
         }
     }
-    return ans;
-}
-
-public static void primeFactorsforQuery(ArrayList<Integer> query)
-{
-
-}
     public static void main(String[] args)
     {
         System.out.println(compress2("abxxxxaaaab"));

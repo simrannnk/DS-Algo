@@ -335,6 +335,7 @@ firstchar== movechar ? then move at last else first pe hi rehne do*/
         moveCharacters(str,0,"","",ch);
     }
 
+//https://www.hackerrank.com/contests/pepcoding-augbatch/challenges/pep-java-7recursion-23countorremovehi
 public static int countAllHi(String str,int idx)
 {
     if(idx>=str.length()-1)

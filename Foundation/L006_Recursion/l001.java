@@ -399,7 +399,7 @@ public static String RemoveAllHi(String str,int idx)
 
 }
 
-
+//https://www.hackerrank.com/contests/pepcoding-augbatch/challenges/pep-java-7recursion-24replacehiwithpep
 public static String ReplaceHi(String str,int idx)
 {
     if(idx>=str.length()-1)
@@ -421,6 +421,29 @@ public static String ReplaceHi(String str,int idx)
         return str.charAt(idx)+ReplaceHi(str,idx+1);
     }
 }
+
+    public static void replaceHi(String str,int idx,String ans){
+        
+        if(idx>=str.length()-1)
+        {
+            if(idx==str.length()-1)
+            {
+                ans=ans+str.charAt(idx);
+            }
+            
+            System.out.println(ans);
+            return;
+        }
+        String s=str.substring(idx,idx+2);
+        if(s.equals("hi"))
+        {
+         replaceHi(str,idx+2,ans+"pep");   
+        }
+        
+        else{
+            replaceHi(str,idx+1,ans+str.charAt(idx));
+        }
+    }
 
 
 }

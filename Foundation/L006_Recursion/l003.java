@@ -134,7 +134,7 @@ public static int findSum(int[] nums,int S,int ssf,int idx)
      
      return ans1+ans2;
  }
- 
+
 // https://practice.geeksforgeeks.org/problems/rat-in-a-maze-problem/1
 public static void paths(int sr,int sc,int dr,int dc,int[][] dir,String[] dirs,int[][] vis,String psf,ArrayList<String> res)
     {
@@ -174,7 +174,7 @@ public static void paths(int sr,int sc,int dr,int dc,int[][] dir,String[] dirs,i
        paths(0,0,n-1,n-1,dir,dirs,m,"",res);
         return res;
     }
-
+// https://practice.geeksforgeeks.org/problems/rat-maze-with-multiple-jumps3852/1
 
     public static void main(String[] args)
     {

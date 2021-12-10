@@ -13,8 +13,8 @@ public class l003{
 
         int count=0;
         vis[sr][sc]=true;//aate hi mark the visited as true
-//uisng for loop to write 4 directions 
-        for(int d=0;d<dirs.length();d++)
+
+        for(int d=0;d<dirs.length();d++)//using for loop to write 4 directions 
         {
             int r=sr+dir[d][0];
             int c=sc+dir[d][1];
@@ -27,7 +27,7 @@ public class l003{
 
         }
     
-        vis[sr][sc]=false;//free the location
+        vis[sr][sc]=false;//free the location after all the calls in all the directions
     }
 
     public static int floodFill_Jump(int sr,int sc,int dr,int dc,boolean[][] vis,int[][] dir,String[] dirs,String ans)

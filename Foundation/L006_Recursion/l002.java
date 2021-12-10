@@ -153,18 +153,15 @@ ArrayList<String> myAns=new ArrayList<>();
 	            System.out.println(psf);
 	            return;
 	        }
-	        
-	        
-	   if(sc+1<=dc){
+	                
+	    if(sc+1<=dc){
 	          printMazePaths(sr,sc+1,dr,dc,psf+"h");
-	   }
-	     
-	        
-	        if(sr+1<=dr)
+	     }        
+
+	    if(sr+1<=dr)
 	        {
 	           printMazePaths(sr+1,sc,dr,dc,psf+"v");
-	        }
-	   
+	        }	   
 }
 
 public static ArrayList<String> getMazePathDiagonal(int sr,int sc,int dr,int dc)
@@ -239,7 +236,7 @@ public static ArrayList<String> getMazePathswithJumps(int sr, int sc, int dr, in
         return myAns;
 }
 
-public static getMazePathswithJumps(int sr,int sc,int dr,int dc,String ans)
+public static void getMazePathswithJumps(int sr,int sc,int dr,int dc,String ans)
 {
     if(sr==dr && sc==dc)
     {

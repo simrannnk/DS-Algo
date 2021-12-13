@@ -89,7 +89,7 @@ public static void displayBoard(int[][] arr)
         }
         vis[sr][sc]=moves;
         int n=vis.length;
-        int m=vis[0].length;
+        int m=vis[0].length;  
 
         for(int d=0;d<dir.length;d++)
         {

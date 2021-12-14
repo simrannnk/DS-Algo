@@ -98,7 +98,7 @@ public static void displayBoard(int[][] arr)
 
             if(r>=0 && c>=0 && r<n && c<m && vis[r][c]==0)
             {
-                knightMove(r,c,moves+1,tnc,vis,dir);
+                knightMove(r,c,moves+1,tnc,vis,dir);// keep increasing the moves until no of moves= tnc 
             }
         }
 

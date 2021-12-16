@@ -170,6 +170,8 @@ public static boolean isPalindrome(String str)
         j--;
     }
 }
+
+//Substring
 public static void PalindromicSubString(String str)
 {
     for(int i=0;i<str.length();i++)
@@ -232,6 +234,7 @@ public static ArrayList<String> permutation(String str)
     return ans;
 }
 
+//Subsequence
 public static ArrayList<String> subsequ(String str){
     ArrayList<String> ans=new ArrayList<>();
     ans.add(" ");

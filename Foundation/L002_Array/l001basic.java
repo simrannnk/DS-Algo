@@ -92,7 +92,7 @@ public class l001Basic{
         return maxEle - minEle;
     }
 
-    
+//Reverse an array
     public static void reverse(int[] arr){
         int i = 0, j = arr.length - 1;
         while(i < j){
@@ -103,8 +103,8 @@ public class l001Basic{
           i++;
           j--;
        }
-    }
-
+       
+    }//Inverse an array
     public static int[] inverse(int[] arr){
         int n = arr.length;
         int[] ans = new int[n];
